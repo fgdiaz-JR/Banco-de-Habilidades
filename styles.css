@@ -41,9 +41,22 @@
   --text-light: #888888;
   --border: #E0D8EC;
   --shadow: rgba(108, 63, 160, 0.12);
+  --footer-bg: #2D2D2D;
   --radius: 12px;
   --radius-sm: 8px;
   --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --bg-light: #14161d;
+  --text-dark: #F1F3F5;
+  --text-medium: #C4C9D1;
+  --text-light: #9AA2AE;
+  --border: #3A3F4B;
+  --shadow: rgba(0, 0, 0, 0.28);
+  --footer-bg: #0B0D12;
+  --primary-light: #34264A;
+  --secondary-light: #173D3A;
 }
 
 html {
@@ -136,6 +149,25 @@ ul {
   color: var(--primary);
 }
 
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  margin-left: auto;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--primary);
+  transform: rotate(12deg);
+}
+
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -166,6 +198,45 @@ ul {
 
 .nav-cta::after {
   display: none !important;
+}
+
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .ods-section,
+[data-theme="dark"] .site-header,
+[data-theme="dark"] .form-container,
+[data-theme="dark"] .profile-header-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .cert-item,
+[data-theme="dark"] .review-item,
+[data-theme="dark"] .tab-btn.active {
+  background: #20232C;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea,
+[data-theme="dark"] .skill-input-row input {
+  background: #191B22;
+  color: var(--text-dark);
+}
+
+[data-theme="dark"] .photo-placeholder,
+[data-theme="dark"] .skills-section {
+  background: #25202F;
+}
+
+[data-theme="dark"] .site-footer {
+  background: var(--footer-bg);
+  color: #C4C9D1;
+}
+
+[data-theme="dark"] .footer-col h4 {
+  color: #F1F3F5;
+}
+
+[data-theme="dark"] .footer-col a {
+  color: #C4C9D1;
 }
 
 /* Menú hamburguesa (móvil) */
@@ -1154,7 +1225,7 @@ ul {
 
 /* --- Pie de página --- */
 .site-footer {
-  background: var(--text-dark);
+  background: var(--footer-bg);
   color: rgba(255, 255, 255, 0.7);
   padding: 3rem 1.5rem 1.5rem;
   margin-top: auto;
@@ -1244,6 +1315,10 @@ ul {
     box-shadow: 0 10px 25px rgba(108, 63, 160, 0.2);
     border-top: 1px solid var(--border);
     z-index: 100;
+  }
+
+  [data-theme="dark"] .nav-links {
+    background: #20232C;
   }
 
   .nav-links.open {

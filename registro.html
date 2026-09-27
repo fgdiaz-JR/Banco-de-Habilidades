@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro / Iniciar sesión - Banco de Habilidades</title>
+  <script>
+    const savedTheme = localStorage.getItem('bh-theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,6 +23,7 @@
       <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
         <span></span><span></span><span></span>
       </button>
+      <button class="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro" onclick="toggleTheme()">🌙</button>
 
       <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
@@ -189,6 +196,22 @@
     }
     document.getElementById('login-form').addEventListener('submit', event => markAuthenticated(event));
     document.getElementById('register-form').addEventListener('submit', event => markAuthenticated(event, ['reg-password', 'reg-password2']));
+    function updateThemeButton() {
+      const button = document.querySelector('.theme-toggle');
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      button.textContent = isDark ? '☀️' : '🌙';
+      button.setAttribute('aria-label', isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      button.title = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+      localStorage.setItem('bh-theme', isDark ? 'light' : 'dark');
+      updateThemeButton();
+    }
+
+    updateThemeButton();
   </script>
 </body>
 </html>
