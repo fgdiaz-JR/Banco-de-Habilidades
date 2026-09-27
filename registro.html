@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro / Iniciar sesión - Banco de Habilidades</title>
+  <script>
+    const savedTheme = localStorage.getItem('bh-theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+    <nav class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">BH</div>
+        <span>Banco de Habilidades</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar a modo oscuro" onclick="toggleTheme()">🌙</button>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html#features">Buscar Servicios</a></li>
+        <li><a href="registro.html" class="active">Iniciar Sesion</a></li>
+        <li><a href="registro.html" class="nav-cta">Registro</a></li>
+      </ul>
+    </nav>
+  </header>
+<main class="form-page">
+    <div class="form-wrapper">
+
+      <div class="form-header">
+        <h2>Bienvenido al Banco de Habilidades</h2>
+        <p>Inicia sesion o crea tu cuenta para comenzar</p>
+        <p class="demo-notice" role="note">
+          Demo estática: no se crean cuentas reales ni se almacenan contraseñas. En producción, la autenticación debe validarse en un servidor mediante HTTPS.
+        </p>
+      </div>
+<div class="form-container" style="margin-bottom: 2rem;">
+        <h3 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 1.5rem;">
+          Iniciar Sesion
+        </h3>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="login-email">Correo electronico</label>
+            <input type="email" id="login-email" name="email" placeholder="tu.correo@ejemplo.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Contrasena</label>
+            <input type="password" id="login-password" name="password" placeholder="********" required autocomplete="current-password">
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:0.5rem;">
+            <label style="display:flex; align-items:center; gap:0.4rem; font-weight:400; font-size:0.9rem; cursor:pointer;">
+              <input type="checkbox" name="remember"> Recordarme
+            </label>
+            <a href="#" class="form-link" style="font-size:0.9rem;">Olvidaste tu contrasena?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+        </form>
+
+        <div class="form-divider">
+          <span>No tienes cuenta?</span>
+        </div>
+
+        <p style="text-align:center; color: var(--text-medium);">
+          Registrate abajo para crear tu perfil profesional
+        </p>
+      </div>
+<div class="form-container" id="registro">
+        <h3 style="color: var(--secondary); font-size: 1.3rem; margin-bottom: 1.5rem;">
+          Crear Cuenta Nueva
+        </h3>
+
+        <form id="register-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-nombre">Nombre completo</label>
+              <input type="text" id="reg-nombre" name="nombre" placeholder="Victoria de Angelis">
+            </div>
+            <div class="form-group">
+              <label for="reg-email">Correo electronico</label>
+              <input type="email" id="reg-email" name="email" placeholder="tu.correo@ejemplo.com">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="reg-password">Contrasena</label>
+              <input type="password" id="reg-password" name="password" placeholder="Mín. 8 caracteres" minlength="8" required autocomplete="new-password">
+            </div>
+            <div class="form-group">
+              <label for="reg-password2">Confirmar contrasena</label>
+              <input type="password" id="reg-password2" name="password2" placeholder="Repite tu contraseña" minlength="8" required autocomplete="new-password">
+            </div>
+          </div>
+<div class="form-group">
+            <label>Cual es tu objetivo en la plataforma?</label>
+            <div class="role-selector" style="margin-top: 0.5rem;">
+              <div class="role-option">
+                <input type="radio" name="rol" id="rol-oferente" value="oferente" checked>
+                <label for="rol-oferente">
+                  <span class="role-icon">&#128161;</span>
+                  <span class="role-title">Oferente</span>
+                  <span class="role-desc">Quiero ofrecer mis servicios y habilidades profesionales</span>
+                </label>
+              </div>
+              <div class="role-option">
+                <input type="radio" name="rol" id="rol-demandante" value="demandante">
+                <label for="rol-demandante">
+                  <span class="role-icon">&#128269;</span>
+                  <span class="role-title">Demandante</span>
+                  <span class="role-desc">Busco contratar talento para mis proyectos o empresa</span>
+                </label>
+              </div>
+            </div>
+          </div>
+<div class="form-group">
+            <label style="display:flex; align-items:flex-start; gap:0.5rem; font-weight:400; cursor:pointer;">
+              <input type="checkbox" name="terminos" style="margin-top:4px;" required>
+              <span>Acepto los <a href="#" class="form-link">Terminos y Condiciones</a> y la
+              <a href="#" class="form-link">Politica de Privacidad</a></span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-secondary btn-block btn-lg">
+            Crear mi cuenta
+          </button>
+        </form>
+
+        <p style="text-align:center; margin-top:1.2rem; color: var(--text-medium); font-size:0.9rem;">
+          Ya tienes cuenta?
+          <a href="registro.html" class="form-link">Inicia sesion arriba</a>
+        </p>
+      </div>
+
+    </div>
+  </main>
+<footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Banco de Habilidades</h4>
+        <p>Plataforma inclusiva para conectar el talento de mujeres y jovenes con oportunidades laborales.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegacion</h4>
+        <a href="index.html">Inicio</a>
+        <a href="registro.html">Registro / Iniciar Sesion</a>
+        <a href="perfil.html">Mi Perfil</a>
+      </div>
+      <div class="footer-col">
+        <h4>ODS Vinculados</h4>
+        <a href="#">ODS 4 - Educacion de Calidad</a>
+        <a href="#">ODS 5 - Igualdad de Genero</a>
+        <a href="#">ODS 8 - Trabajo Decente</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>2026 Banco de Habilidades para Mujeres y Jovenes - Proyecto Universitario</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simula la autenticación sin enviar ni almacenar credenciales.
+    const markAuthenticated = (event, passwordFields = []) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      if (passwordFields.length === 2 &&
+          document.getElementById(passwordFields[0]).value !== document.getElementById(passwordFields[1]).value) {
+        alert('Las contraseñas no coinciden.');
+        return;
+      }
+      sessionStorage.setItem('bh-demo-auth', 'authenticated');
+      window.location.assign('perfil.html');
+    };
+
+    if (new URLSearchParams(window.location.search).get('auth') === 'required') {
+      alert('Debes iniciar sesión para ver tu perfil. Esta demo solo simula la autenticación en el navegador.');
+    }
+    if (new URLSearchParams(window.location.search).get('logout') === '1') {
+      sessionStorage.removeItem('bh-demo-auth');
+    }
+    document.getElementById('login-form').addEventListener('submit', event => markAuthenticated(event));
+    document.getElementById('register-form').addEventListener('submit', event => markAuthenticated(event, ['reg-password', 'reg-password2']));
+    function updateThemeButton() {
+      const button = document.querySelector('.theme-toggle');
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      button.textContent = isDark ? '☀️' : '🌙';
+      button.setAttribute('aria-label', isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+      button.title = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+      localStorage.setItem('bh-theme', isDark ? 'light' : 'dark');
+      updateThemeButton();
+    }
+
+    updateThemeButton();
+  </script>
+</body>
+</html>
+
